@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "benchmark_gpu.py", line 55, in <module>
+    H, edges = pp.joint_pdf(w_norm, DI_c, bins=bins, ranges=ranges, log=False)
+  File "/mnt/beegfs/home/allaglo/sfemans_ai/nikita/gpu_source/stats.py", line 122, in joint_pdf
+    H, xedges, yedges = cp.histogram2d(field1, field2, bins=bins, range=ranges, \
+  File "/mnt/beegfs/home/allaglo/miniconda3/envs/statistics/lib/python3.8/site-packages/cupy/_statistics/histogram.py", line 502, in histogram2d
+    hist, edges = histogramdd([x, y], bins, range, weights, density)
+  File "/mnt/beegfs/home/allaglo/miniconda3/envs/statistics/lib/python3.8/site-packages/cupy/_statistics/histogram.py", line 346, in histogramdd
+    sample = cupy.stack(sample, axis=-1)
+  File "/mnt/beegfs/home/allaglo/miniconda3/envs/statistics/lib/python3.8/site-packages/cupy/_manipulation/join.py", line 135, in stack
+    return concatenate([cupy.expand_dims(x, axis) for x in tup], axis, out)
+  File "/mnt/beegfs/home/allaglo/miniconda3/envs/statistics/lib/python3.8/site-packages/cupy/_manipulation/join.py", line 60, in concatenate
+    return _core.concatenate_method(tup, axis, out, dtype, casting)
+  File "cupy/_core/_routines_manipulation.pyx", line 587, in cupy._core._routines_manipulation.concatenate_method
+  File "cupy/_core/_routines_manipulation.pyx", line 660, in cupy._core._routines_manipulation.concatenate_method
+  File "cupy/_core/core.pyx", line 136, in cupy._core.core.ndarray.__new__
+  File "cupy/_core/core.pyx", line 224, in cupy._core.core._ndarray_base._init
+  File "cupy/cuda/memory.pyx", line 742, in cupy.cuda.memory.alloc
+  File "cupy/cuda/memory.pyx", line 1419, in cupy.cuda.memory.MemoryPool.malloc
+  File "cupy/cuda/memory.pyx", line 1440, in cupy.cuda.memory.MemoryPool.malloc
+  File "cupy/cuda/memory.pyx", line 1120, in cupy.cuda.memory.SingleDeviceMemoryPool.malloc
+  File "cupy/cuda/memory.pyx", line 1141, in cupy.cuda.memory.SingleDeviceMemoryPool._malloc
+  File "cupy/cuda/memory.pyx", line 1379, in cupy.cuda.memory.SingleDeviceMemoryPool._try_malloc
+cupy.cuda.memory.OutOfMemoryError: Out of memory allocating 11,923,109,376 bytes (allocated so far: 41,754,343,936 bytes).

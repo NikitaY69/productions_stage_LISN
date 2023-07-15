@@ -1,0 +1,60 @@
+slide 2 : mesure d'un anémomètre, 1 composante de vitesse en 1 point
+	  l'histogramme des valeurs (moyenne et écart-type)
+	  approche plus intéressante
+	  
+slide 7 : 'en effet' après la loi
+	  autre nombre de reynolds, globalement la racine carree du precedent
+	  quelles sont les implications ? -- onsager
+	  definir vorticite; moyenne du carre
+	  bien faire le lien entre viscosité et reynolds
+	  
+TRANSITION: comment étudier tout cela en théorie ?
+
+slide 8 : eta = echelle de dissipation (kolmogorov); L = echelle caracteristique vue precedemment (injection de l energie)
+          delta u en scalaire
+          
+slide 9: equation de bilan dans laquelle on reconnait  un terme de fux un terme de production et deux termes de dissipation (on se focalise sur le terme de dissipation anormale definie ici appelle le Du dans la suite)
+EXPLIQUER QUE Du dit les transferts des 
+
+slide 10: on va appuyer ce cadre sur des simulations numeriques qu on va comparer à des mesures expérimentales issues du SPEC (saclay) et description de l'experience
+
+slide 11: DE L'EAU DANS UN CYLINDRE; le mouvement est généré par deux turbines contra-rotatives qui tournent très vite de telle façon que Re 10^7 dans cette petite experience facile a mettre en oeuvre
+archetype pour les experiences turbulences dans des boites fermees; les experimentaux font leurs mesures au centre du cylindre (+ facile et homogene isotrope) alors que nous on peut considerer differents sous-ensembles
+moi j utilise des donnees numeriques; et cette experienece avait deja ete simulee par Hugues Faller et je vais vous presenter les resultats de ces analyses
+
+slide 12
+ici vous voyez le tableau des parametres experimentaux et numeriques utilises dans l article; en rouge le cas numerique de Hugues Faller qu on reprend ici
+
+
+slide 13
+ajouter un ell aux quantites issus de filtrage (DI)
+prendre fig 4 gauche plutot (AXES)
+CERTAINS DOUTES --> nouvelles simulations avec les memes parametres mais en ayant fait les correctifs necessaires
+preciser filtrage mauvais
+
+slide 15 TRANSITION: une fois le module déployé sur les nouvelles données; quels résultats ai-je obtenu ?
+
+slide 16+ 
+bien distinguer mes resultats et ceux de Faller
+(memes quantites)
+16: 1- oreille de lapin
+    2- l etendue
+    3- on voit moins d evenements de faible probabilite (taille des bins)
+on considere tous les deux les memes volumes (tout sauf les turbines)
+DESC: EVENEMENTS TRES PROBABLES POUR DI proche de 0 et omega assez faibles et ca s etale en structures de moins en moins probables
+
+slide 17: 
+conclure --> 1. validation du module 
+2. cela montre le probleme sur l axe (reponds a une des questions)
+oreille de lapin origine multifactorielle
+
+slide 18: 
+Comparaison des probabilites jointes numeriques et experimentales
+Au lieu d effectuer un simple zoom, je peux dorenavant calculer les statistiques dans la zone reduite utilisee par les experimentateurs. 
+
+slides 18-19:
+analyses purement qualitatives car pas les memes echelles de kolmogorov, pas les memes reynolds, et pas les memes statistiques
+on capterait plus la cascade inverse expérimentalement; nécessite de plus amples investigations
+
+slide 21:
+brouillage grande-échelle, écart-type des pdfs grandissent

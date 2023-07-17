@@ -17,4 +17,6 @@ In case of a modification of the .tex files, you shall `--force add`
 a <ins>compressed</ins> pdf. The compression can be done using 
 Ghostscript and the following command:
 
->  gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile=compressed.pdf original.pdf
+```
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile=compressed.pdf original.pdf
+```

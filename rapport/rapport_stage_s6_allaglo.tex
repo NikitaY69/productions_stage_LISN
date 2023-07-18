@@ -54,7 +54,7 @@
         
         \vspace{2cm}
         \centering
-        \includegraphics[width=13cm]{figs/turbulence.jpg}
+        \includegraphics[width=14cm]{figs/turb.jpg}
 
              \vspace{1.5cm}
               {\huge ALLAGLO Nikita} \\
@@ -475,12 +475,12 @@ mon travail a consisté à développer un code dédié à cette analyse en utili
 \subsection{Code \texttt{von-Karman-PostProcess}}\label{sec:code-VK}
 \noindent Nous avons programmé un module d'analyse statistique permettant de calculer toutes
 les grandeurs mentionnées dans la section \S\ref{sec:outil_turb}:
-\href{https://gitlab.lisn.upsaclay.fr/allaglo/von-karman-postprocess/-/tree/gpus_tests?ref_type=heads}
+\href{https://gitlab.lisn.upsaclay.fr/allaglo/von-karman-postprocess}
 {von-Karman-PostProcess}. En particulier, nous avons cherché à optimiser les performances
-du dit module en implémentant une version accélérée sous la branche \texttt{gpus\_tests}
+du dit module en implémentant une version accélérée sous la branche \texttt{gpus}
 du projet (voir section \S \ref{sec:gpus} pour des explications sur l'utilisation de 
 GPUs sur Python). Des exemples d'utilisation sont rapportés
-dans un \href{https://gitlab.lisn.upsaclay.fr/allaglo/von-karman-postprocess/-/blob/main/tutorials/tutorial.ipynb}{tutoriel}
+dans un \href{https://gitlab.lisn.upsaclay.fr/allaglo/von-karman-postprocess/-/blob/main/tutorial/tutorial.ipynb}{tutoriel}
 partagé dans le projet. Cette section décrit les mathématiques sous-jacentes à
 toutes ces fonctions. On considère dans toute la suite un champ \emph{scalaire} et 
 \emph{continu} quelconque $A$ défini sur un volume $\Omega$ décrit temporellement pendant une durée $T$.
@@ -707,11 +707,11 @@ Le chargement des données est enfin optimisé en chargeant 14 chunks indépenda
 
 \noindent\begin{pythoncode}{label=lst:rechunk,colback=Red!5!white,colframe=Red,coltitle=black}
   {Chunking des données délayées sur 14 threads}
-  from stats import Stats
+  from vkcupp import Stats
   import dask.array as da
 
   db_path = '...'
-  pp = Stats(db_path)                  # getting the PostProcessing module
+  pp = Stats(db_path, 'penal')         # getting the PostProcessing module
   data = pp.db                         # database dictionnary
   P, N = pp.dims[2], pp.dims[3]        # p,r dimensions in data struct
 
@@ -745,12 +745,12 @@ avec champ de pénalisation à l'aide d'un GPU.
 \noindent\begin{pythoncode}{label=lst:gpu_work,colback=Red!5!white,colframe=Red,coltitle=black}
   {Workloads séquentiels sous GPUs}
   import os
-  from stats import Stats
+  from vkcupp import Stats
   import cupy as cp
   import dask.array as da
 
   db_path = '...'
-  pp = Stats(db_path)                    # getting the PostProcessing module
+  pp = Stats(db_path, 'penal')           # getting the PostProcessing module
   data = pp.db                           # database dictionnary
   P, N = pp.dims[2], pp.dims[3]          # p,r dimensions in data struct
 
@@ -810,11 +810,11 @@ Le script \ref{lst:recomb} permet enfin d'obtenir les histogrammes complets.
 
 \noindent\begin{pythoncode}{label=lst:recomb,colback=Red!5!white,colframe=Red,coltitle=black}
   {Recombinaison des probabilités jointes}
-  from stats import Stats
+  from vkcupp import Stats
   import numpy as np
   
   db_path = '...'
-  pp = Stats(db_path)                    # getting the PostProcessing module
+  pp = Stats(db_path, 'penal')           # getting the PostProcessing module
   bins = 2000
   bags = 28
 
@@ -1782,8 +1782,8 @@ convenablement.
 \end{enumerate}
 \end{tcolorbox}
 
-\noindent Vous pouvez consulter la branche {\bf gpus\_tests} de la classe Stats du module 
-\href{https://gitlab.lisn.upsaclay.fr/allaglo/von-karman-postprocess/-/tree/gpus_tests?ref_type=heads}
+\noindent Vous pouvez consulter la branche {\bf gpus} de la classe Stats du module 
+\href{https://gitlab.lisn.upsaclay.fr/allaglo/von-karman-postprocess/-/tree/gpu?ref_type=heads}
 {von-Karman-PostProcess} et vous verrez bien que les codes de PostProcessing en eux-mêmes
 sont trivialement modifiés en invoquant simplement cupy à la place de numpy. 
 En ce qui concerne les workloads, pour calculer une densité de probabilité
@@ -1839,7 +1839,7 @@ de lançer plusieurs workloads en parallèle sur différents GPUs - ce n'est pas
 des CPUs dont le nombre et la mémoire allouable sont (très largement) suffisants
 afin de déployer les calculs en parallèle. On introduit ici les idées clés sous-jacentes au
 déploiement sur CPU. Des exemples pratiques de déploiement seront rapportés
-dans la section 2.2 du \href{https://gitlab.lisn.upsaclay.fr/allaglo/von-karman-postprocess/-/blob/main/tutorials/tutorial.ipynb}
+dans la section 2.2 du \href{https://gitlab.lisn.upsaclay.fr/allaglo/von-karman-postprocess/-/blob/main/tutorial/tutorial.ipynb}
 {tutoriel partagé sur la page git}. 
 
 \subsection{Détails techniques workloads GPUs}\label{sec:tech_workloads}
